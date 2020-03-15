@@ -15,7 +15,7 @@ Applies the equivalent of [`torchvision.transforms.Normalize`](https://pytorch.o
 
 
 ## RandomCrop
-Applies the equivalent of [`torchvision.transforms.RandomCrop`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomCrop) to a batch of images.
+Applies the equivalent of [`torchvision.transforms.RandomCrop`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomCrop) to a batch of images. Images are independently transformed.
 #### `__init__(size, padding=None, dtype=torch.float, device='cpu')`
 * __size__ _(int)_ – Desired output size of the crop.
 * __padding__ _(int, optional)_ – Optional padding on each border of the image. Default is None, i.e no padding.
@@ -29,7 +29,7 @@ Applies the equivalent of [`torchvision.transforms.RandomCrop`](https://pytorch.
 
 
 ## RandomHorizontalFlip
-Applies the equivalent of [`torchvision.transforms.RandomHorizontalFlip`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomHorizontalFlip) to a batch of images.
+Applies the equivalent of [`torchvision.transforms.RandomHorizontalFlip`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomHorizontalFlip) to a batch of images. Images are independently transformed.
 > Note: This transform acts out of place by default, i.e., it does not mutate the input tensor.
 #### `__init__(p=0.5, inplace=False)`
 * __p__ _(float)_ – probability of an image being flipped.
