@@ -1,3 +1,5 @@
+# https://github.com/pratogab/batch-transforms
+
 import torch
 
 
@@ -128,20 +130,8 @@ class RandomCrop:
             i = torch.randint(0, h - th + 1, (tensor.size(0),), device=self.device)
             j = torch.randint(0, w - tw + 1, (tensor.size(0),), device=self.device)
             
-        columns = torch.zeros((tensor.size(0), tw), dtype=torch.long, device=self.device)
-        columns[:] = torch.arange(tw, dtype=torch.long, device=self.device)
-        columns = (columns + j[:, None]).repeat(1, tensor.size(1) * th).flatten()
-        
-        rows = torch.zeros((th, 1), dtype=torch.long, device=self.device)
-        rows += torch.arange(th, dtype=torch.long, device=self.device)[:, None]
-        rows = rows[None, :].repeat(tensor.size(0), 1, tw)
-        rows += i[:, None, None]
-        rows = rows[:, None, :, :].repeat(1, tensor.size(1), 1, 1).flatten()
-        
-        channels = torch.arange(tensor.size(1), dtype=torch.long, device=self.device)
-        channels = channels[:, None].repeat(1, th*tw)[None, :, :].repeat(tensor.size(0), 1, 1).flatten()
-        
-        batches = torch.arange(tensor.size(0), dtype=torch.long, device=self.device)
-        batches = batches[:, None].repeat(1, tensor.size(1) * tw * th).flatten()
-        
-        return padded[batches, channels, rows, columns].view(tensor.size(0), tensor.size(1), th, tw)
+        rows = torch.arange(th, dtype=torch.long, device=self.device) + i[:, None]
+        columns = torch.arange(tw, dtype=torch.long, device=self.device) + j[:, None]
+        padded = padded.permute(1, 0, 2, 3)
+        padded = padded[:, torch.arange(2)[:, None, None], rows[:, torch.arange(4)[:, None]], columns[:, None]]
+        return padded.permute(1, 0, 2, 3)
