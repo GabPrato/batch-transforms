@@ -133,5 +133,5 @@ class RandomCrop:
         rows = torch.arange(th, dtype=torch.long, device=self.device) + i[:, None]
         columns = torch.arange(tw, dtype=torch.long, device=self.device) + j[:, None]
         padded = padded.permute(1, 0, 2, 3)
-        padded = padded[:, torch.arange(2)[:, None, None], rows[:, torch.arange(4)[:, None]], columns[:, None]]
+        padded = padded[:, torch.arange(tensor.size(0))[:, None, None], rows[:, torch.arange(th)[:, None]], columns[:, None]]
         return padded.permute(1, 0, 2, 3)
