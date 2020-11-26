@@ -16,10 +16,9 @@ Applies the equivalent of [`torchvision.transforms.Normalize`](https://pytorch.o
 
 ## RandomCrop
 Applies the equivalent of [`torchvision.transforms.RandomCrop`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomCrop) to a batch of images. Images are independently transformed.
-#### `__init__(size, padding=None, dtype=torch.float, device='cpu')`
+#### `__init__(size, padding=None, device='cpu')`
 * __size__ _(int)_ – Desired output size of the crop.
 * __padding__ _(int, optional)_ – Optional padding on each border of the image. Default is None, i.e no padding.
-* __dtype__ _(torch.dtype,optional)_ – The data type of tensors to which the transform will be applied.
 * __device__ _(torch.device,optional)_ – The device of tensors to which the transform will be applied.
 #### `__call__(tensor)`
 * __tensor__ _(Tensor)_ – Tensor of size (N, C, H, W) to be randomly cropped.

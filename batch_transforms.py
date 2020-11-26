@@ -96,15 +96,13 @@ class RandomCrop:
         size (int): Desired output size of the crop.
         padding (int, optional): Optional padding on each border of the image. 
             Default is None, i.e no padding.
-        dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
         device (torch.device,optional): The device of tensors to which the transform will be applied.
 
     """
     
-    def __init__(self, size, padding=None, dtype=torch.float, device='cpu'):
+    def __init__(self, size, padding=None, device='cpu'):
         self.size = size
         self.padding = padding
-        self.dtype = dtype
         self.device = device
         
     def __call__(self, tensor):
@@ -117,7 +115,7 @@ class RandomCrop:
         """
         if self.padding is not None:
             padded = torch.zeros((tensor.size(0), tensor.size(1), tensor.size(2) + self.padding * 2, 
-                                  tensor.size(3) + self.padding * 2), dtype=self.dtype, device=self.device)
+                                  tensor.size(3) + self.padding * 2), dtype=tensor.dtype, device=self.device)
             padded[:, :, self.padding:-self.padding, self.padding:-self.padding] = tensor
         else:
             padded = tensor
