@@ -1,3 +1,5 @@
+# Batch Transforms
+Batch equivalent of PyTorch Transforms.
 ```python
 transform_batch = transforms.Compose([
     ToTensor(),
