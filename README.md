@@ -1,3 +1,13 @@
+```python
+transform_batch = transforms.Compose([
+    ToTensor(),
+    Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+
+for images in data_iterator:
+    images = transform_batch(images)
+    output = model(images)
+```
+
 ## Normalize
 Applies the equivalent of [`torchvision.transforms.Normalize`](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.Normalize) to a batch of images.
 > Note: This transform acts out of place by default, i.e., it does not mutate the input tensor.
