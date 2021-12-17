@@ -120,7 +120,7 @@ class RandomCrop:
         else:
             padded = tensor
             
-        w, h = padded.size(2), padded.size(3)
+        h, w = padded.size(2), padded.size(3)
         th, tw = self.size, self.size
         if w == tw and h == th:
             i, j = 0, 0
